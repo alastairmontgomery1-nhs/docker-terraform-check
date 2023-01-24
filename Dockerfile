@@ -1,13 +1,15 @@
 FROM alpine:latest as security
 ARG TFSEC_VER=v1.28.1
-ARG TFLINT_VER=v0.43.0
+ARG TFLINT_VER=v0.44.1
 
 RUN apk add --no-cache git bash && \
     adduser -D -g "security" -s /bin/sh security && \
     mkdir -p /home/security/workdir && \
     chown security:security /home/security/workdir && \
     mkdir -p /home/security/config && \
-    chown security:security /home/security/config 
+    chown security:security /home/security/config && \
+    mkdir -p /home/security/reports && \
+    chown security:security /home/security/reports
 
 COPY .tflint.hcl /home/security/config/
 COPY .tfsec.yml /home/secrurity/config/
