@@ -48,12 +48,6 @@ If you want to provide your own `.tfsec.yml` and `.tflint.hcl` configuration fil
 docker run --rm -it -v $PWD:/home/security/workdir -v $PWD/config:/home/security/config ghcr.io/alastairhm/docker-terraform-check:latest
 ```
 
-
-```text
-          _    _ __  __ 
-    /\   | |  | |  \/  | Email   : alastair@montgomery.me.uk
-   /  \  | |__| | \  / | Web     : https://blog.0x32.co.uk/
-  / /\ \ |  __  | |\/| | Twitter : @alastair_hm
- / ____ \| |  | | |  | |
-/_/    \_\_|  |_|_|  |_| (c) 2021
-```
+Pass in Reports directory for output
+```bash
+docker run --rm -it -v "$PWD":/home/security/workdir -v "$PWD"/config:/home/security/config -v "$PWD/reports":/home/security/reports -e TEST_DIR=path/to/terraform/stack docker-terraform-check:latest
